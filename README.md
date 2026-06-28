@@ -3349,3 +3349,57 @@ async function loginAndJoin(roomCode) {
   }
 }
 
+rebirth-frontend-v7/
+├── index.html                  # Main game (Three.js v7 full frontend)
+├── manifest.json               # PWA manifest
+├── sw.js                       # Service Worker (for offline + install)
+├── assets/
+│   ├── icons/                  # PWA icons (192x192, 512x512)
+│   └── audio/                  # Optional sound files (if you expand beyond Web Audio)
+├── css/
+│   └── style.css               # (Optional) Extracted styles if you split from HTML
+├── js/
+│   ├── main.js                 # Core game loop, Three.js scene, player, enemies
+│   ├── multiplayer.js          # Socket.io / WebSocket connection & sync logic
+│   ├── inventory.js            # Drag & drop inventory + hotbar
+│   ├── combat.js               # Attack system & stamina effects
+│   ├── survival.js             # Health, stamina, hunger, thirst, temperature
+│   ├── world.js                # Procedural terrain, biomes, trees, resources
+│   ├── ui.js                   # HUD, quest log, crafting panel, modals
+│   └── utils.js                # Helpers (noise, math, etc.)
+├── README.md
+└── .gitignore
+rebirth-backend-v7/
+├── src/
+│   ├── config/
+│   │   └── db.js               # MongoDB connection
+│   ├── models/
+│   │   ├── Player.js           # User schema (inventory, position, stats)
+│   │   ├── Room.js             # Multiplayer room + persisted buildings
+│   │   └── WorldState.js       # Optional: full world snapshot
+│   ├── routes/
+│   │   ├── auth.js             # Register / Login (JWT)
+│   │   └── world.js            # Save/Load world endpoints
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── worldController.js
+│   ├── sockets/
+│   │   └── gameSocket.js       # All real-time events (playerUpdate, placeBuilding, attack, etc.)
+│   ├── middleware/
+│   │   ├── auth.js             # JWT verification
+│   │   └── rateLimiter.js      # Protection for global scale
+│   └── utils/
+│       └── logger.js
+├── server.js                   # Main entry point (Express + Socket.io)
+├── package.json
+├── .env                        # Mongo URI, JWT secret, PORT
+├── .env.example
+├── Dockerfile                  # (Optional) For containerized deployment
+├── docker-compose.yml          # MongoDB + app
+└── README.md
+cd rebirth-frontend-v7
+# Just open index.html in browser (or use any static server)
+npx serve .
+cd rebirth-backend-v7
+npm install
+npm run dev          # or node server.js
